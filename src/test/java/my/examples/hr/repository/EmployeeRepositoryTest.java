@@ -2,6 +2,7 @@ package my.examples.hr.repository;
 
 import my.examples.hr.domain.Department;
 import my.examples.hr.domain.Employee;
+import my.examples.hr.repository.custom.EmployeeSearchType;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,11 +27,35 @@ public class EmployeeRepositoryTest {
     }
 
     @Test
+    public void search() throws Exception{
+        List<Employee> all = employeeRepository.getEmployees(EmployeeSearchType.JOB_NAME, "Programmer");
+        for(Employee e : all){
+            System.out.println(e.getFirstName() + ", " + e.getLastName());
+        }
+
+    }
+
+    @Test
+    public void findBoss() throws Exception{
+        Employee employee = employeeRepository.getEmployeeById(100L);
+        int i = 1;
+        Employee boss = employee.getManager();
+        String bossName = "";
+        if(boss != null){
+            bossName = boss.getFirstName();
+        }
+        System.out.println(i + " - " + employee.getFirstName() + " , " + bossName);
+        i++;
+
+    }
+
+    @Test
     public void findAll() throws Exception{
         List<Employee> all = employeeRepository.getEmployeeAll();
+        int i = 1;
         for(Employee employee : all){
-            System.out.println("Name : " + employee.getFirstName()+ " " + employee.getLastName());
-            System.out.println("E-mail : " + employee.getEmail());
+             System.out.println(i + "- Name : " + employee.getFirstName() + ", " + employee.getJob());
+             i++;
         }
     }
 

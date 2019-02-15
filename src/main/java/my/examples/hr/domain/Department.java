@@ -15,17 +15,18 @@ public class Department {
     @Id
     private Long departmentId;
     private String departmentName;
-//    @ManyToOne
-//    @JoinColumn(name = "manager_id")
-//    private Employee manager;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "manager_id")
+    private Employee manager;
 
-//    @OneToMany(mappedBy = "department")
-//    private Set<Employee> employees;
-    @ManyToOne
+    @OneToMany(mappedBy = "department")
+    private Set<Employee> employees;
+
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "location_id")
     private Location location;
 
-//    public Department(){
-//        employees = new HashSet<>();
-//    }
+    public Department(){
+        employees = new HashSet<>();
+    }
 }

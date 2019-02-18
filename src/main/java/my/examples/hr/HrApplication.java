@@ -1,5 +1,7 @@
 package my.examples.hr;
 
+import com.fasterxml.jackson.databind.Module;
+import com.fasterxml.jackson.datatype.hibernate5.Hibernate5Module;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -20,6 +22,11 @@ public class HrApplication implements CommandLineRunner{
     @Override
     public void run(String... args) throws Exception {
 
+    }
+
+    @Bean
+    public Module datatypeHibernateModule() {
+        return new Hibernate5Module();
     }
 }
 

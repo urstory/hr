@@ -15,7 +15,7 @@ public interface EmployeeRepository extends JpaRepository<Employee, Long>, Emplo
     @Query("SELECT e FROM Employee e inner join fetch e.job")
     List<Employee> getEmployeeAll();
 
-    @Query("SELECT e FROM  Employee e left join fetch e.manager where e.employeeId = :id")
+    @Query("SELECT e FROM  Employee e left join fetch e.job where e.employeeId = :id")
     Employee getEmployeeById(@Param("id") Long id);
 
     // 특정부서(이름) 에 속한 사원의 이름을 출력하시오.

@@ -1,5 +1,7 @@
 package my.examples.hr.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -21,8 +23,11 @@ public class Job {
     private double minSalary;
     private double maxSalary;
     @OneToMany(mappedBy = "job")
+    @JsonBackReference
     private Set<Employee> employees;
+
     @OneToMany(mappedBy = "job")
+    @JsonBackReference
     private Set<JobHistory> jobHistories;
 
     public Job(){
